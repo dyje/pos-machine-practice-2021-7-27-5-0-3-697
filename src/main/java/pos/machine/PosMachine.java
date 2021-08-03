@@ -14,16 +14,24 @@ public class PosMachine {
         barcodes = new ArrayList<>(new LinkedHashSet<>(barcodes));
         for (String barcode : barcodes) {
             Item itemValue = new Item();
-            for (ItemInfo itemInfoVal : itemInfo) {
-                if (barcode.equals(itemInfoVal.getBarcode())) {
-                    itemValue.setName(itemInfoVal.getName());
-                    itemValue.setUnitPrice(itemInfoVal.getPrice());
+            for (ItemInfo itemInfoValue : itemInfo) {
+                if (barcode.equals(itemInfoValue.getBarcode())) {
+                    itemValue.setName(itemInfoValue.getName());
+                    itemValue.setUnitPrice(itemInfoValue.getPrice());
                     itemValue.setQuantity(retrieveItemCount(barcode));
                 }
             }
             items.add(itemValue);
         }
         return items;
+    }
+
+    private List<Item> calculateItemSubtotal(List<Item> itemsList) {
+        for(Item itemValue : itemsList)
+        {
+            itemValue.setSubTotal(itemValue.getQuantity() * itemValue.getUnitPrice());
+        }
+        return itemsList;
     }
 
     private int retrieveItemCount(String currentItemBarcode) {
