@@ -33,6 +33,14 @@ public class PosMachine {
         }
         return itemsList;
     }
+    private int calculateTotalPrice(List<Item> itemsList) {
+        int grandTotal = 0;
+        for(Item itemValue : itemsList)
+        {
+            grandTotal += itemValue.getSubTotal();
+        }
+        return grandTotal;
+    }
 
     private int retrieveItemCount(String currentItemBarcode) {
         return Collections.frequency(ItemDataLoader.loadBarcodes(), currentItemBarcode);
