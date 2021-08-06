@@ -27,6 +27,7 @@ public class PosMachine {
         return items;
     }
 
+
     private String generateItemDetail(Receipt receipt) {
         String itemsDetail = "";
         for (Item itemValue : receipt.getItems())
@@ -44,6 +45,13 @@ public class PosMachine {
             itemValue.setSubTotal(itemValue.getQuantity() * itemValue.getUnitPrice());
         }
         return itemsList;
+    }
+
+    private Receipt calculateAmount(List<Item> itemsList) {
+        Receipt receipt = new Receipt();
+        receipt.setItems(calculateItemSubtotal(itemsList));
+        receipt.setTotalPrice(calculateTotalPrice(itemsList));
+        return receipt;
     }
 
     private int calculateTotalPrice(List<Item> itemsList) {
