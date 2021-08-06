@@ -8,6 +8,7 @@ public class PosMachine {
     public String printReceipt(List<String> barcodes) {
         return null;
     }
+
     private List<Item> getItems(List<String> barcodes) {
         LinkedList<Item> items = new LinkedList<Item>();
         List<ItemInfo> itemInfo = loadAllItemsInfo();
@@ -27,16 +28,15 @@ public class PosMachine {
     }
 
     private List<Item> calculateItemSubtotal(List<Item> itemsList) {
-        for(Item itemValue : itemsList)
-        {
+        for (Item itemValue : itemsList) {
             itemValue.setSubTotal(itemValue.getQuantity() * itemValue.getUnitPrice());
         }
         return itemsList;
     }
+
     private int calculateTotalPrice(List<Item> itemsList) {
         int grandTotal = 0;
-        for(Item itemValue : itemsList)
-        {
+        for (Item itemValue : itemsList) {
             grandTotal += itemValue.getSubTotal();
         }
         return grandTotal;
@@ -46,7 +46,7 @@ public class PosMachine {
         return Collections.frequency(ItemDataLoader.loadBarcodes(), currentItemBarcode);
     }
 
-        private List<ItemInfo> loadAllItemsInfo(){
+    private List<ItemInfo> loadAllItemsInfo() {
         return ItemDataLoader.loadAllItemInfos();
     }
 }
