@@ -6,7 +6,9 @@ import java.util.*;
 public class PosMachine {
 
     public String printReceipt(List<String> barcodes) {
-        return null;
+        List<Item> items = getItems(barcodes);
+        Receipt receipt = calculateAmount(items);
+        return formatReceipt(receipt);
     }
 
     private List<Item> getItems(List<String> barcodes) {
@@ -30,9 +32,8 @@ public class PosMachine {
 
     private String generateItemDetail(Receipt receipt) {
         String itemsDetail = "";
-        for (Item itemValue : receipt.getItems())
-        {
-            itemsDetail += "Name: "+ itemValue.getName() +
+        for (Item itemValue : receipt.getItems()) {
+            itemsDetail += "Name: " + itemValue.getName() +
                     ", Quantity: " + itemValue.getQuantity() +
                     ", Unit price: " + itemValue.getUnitPrice() + " (yuan)" +
                     ", Subtotal: " + itemValue.getSubTotal() + " (yuan)\n";
