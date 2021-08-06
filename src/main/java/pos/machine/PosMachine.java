@@ -62,6 +62,13 @@ public class PosMachine {
         return grandTotal;
     }
 
+    private String formatReceipt(Receipt receipt) {
+        String itemsDetail = generateItemDetail(receipt);
+        return ("***<store earning no money>Receipt***\n" + itemsDetail + "----------------------\n" +
+                "Total: " + receipt.getTotalPrice() + " (yuan)\n" +
+                "**********************");
+    }
+
     private int retrieveItemCount(String currentItemBarcode) {
         return Collections.frequency(ItemDataLoader.loadBarcodes(), currentItemBarcode);
     }
